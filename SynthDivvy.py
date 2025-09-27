@@ -1,17 +1,37 @@
-print("Welcome to SynthDivvy; a program to run synthetic division.")
+print("Welcome to SynthDivvy; a program to run synthetic division.\n")
 factors = []
-factorsNeg = []
 terms = []
+facsOfLead = []
+facsOfConst = []
+pOverQ = []
+factorsNeg = []
 
 #=== STEP 1: Get factors and convert them to ints, also getting all negative variables =====================================================
-numOfFacs = int(input(f"How many total possible factors are there from your leading coefficient and constant? (EXCLUDING negative values; those will be accounted for automatically)\n>>"))
-for a in range(numOfFacs):
-    responseFac = float(input("Enter a factor (Input fractions as decimals):\n>>"))
-    factors.append(responseFac)
-for b in factors: #creates a list of negative factors
-    factorsNeg.append(b * -1)
-factors = factors + factorsNeg #combines the two lists, giving all factors both negative and positive
+numOfFacsLead = int(input(f"How many total possible factors are there from your leading coefficient? (EXCLUDING negative values; those will be accounted for automatically)\n>>"))
+numOfFacsConst = int(input(f"How many total possible factors are there from your constant? (EXCLUDING negative values; those will be accounted for automatically)\n>>"))
 
+for a in range(numOfFacsLead): # for each possible factor of the leading coefficient (note; use range since numOfFacsLead is an int)
+    responseFacLead = float(input("Enter a factor (Lead) :\n>>")) # asks user to input the factor
+    facsOfLead.append(responseFacLead) #adds the factor to a list
+
+for b in range(numOfFacsConst): 
+    responseFacConst = float(input("Enter a factor (Constant) :\n>>"))
+    facsOfConst.append(responseFacConst)
+
+for p in facsOfConst: #going to divide every factor of the constant by every factor of the leading coefficient
+    for q in facsOfLead:
+        pOverQ.append(p / q) #adds the result to a new list
+
+for negFacLead in facsOfLead: # all 3 loops loop through all factors and makes them negative, adding them to a new list
+    factorsNeg.append(negFacLead * -1)
+for negFacConst in facsOfConst:
+    factorsNeg.append(negFacConst * -1)
+for div in pOverQ:
+    factorsNeg.append(div * -1)
+factors = facsOfLead + facsOfConst + pOverQ + factorsNeg #combines the two lists, giving all factors both negative and positive
+factors = list(set(factors)) #removes duplicates by converting to a set and back to a list
+factors.sort() #sorts the list in ascending order
+print(f"Your factors are: {factors}")
 
 #=== STEP 2: Get coefficients and convert them to ints ======================================================================================
 polyLen = int(input(f"How many terms are in your polynomial? (For example, x^2 + 2x + 10 has 3 terms)\n>>"))
