@@ -31,5 +31,5 @@ for divisor in factors: #loops through all possible rational roots (divisors)
         #===Calculations done, now to check if the remainder is 0===
     if currentPolynomial[-1] == 0: #if the remainder is 0, then the divisor is a root
         print(f"THIS FACTOR IS A ROOT!: {divisor}")
-    print(f"After dividing by {divisor}, Your coefficients are {currentPolynomial[0:(len(currentPolynomial)-1)]} with a remainder of {currentPolynomial[-1]}")
+    print(f"After dividing by {divisor}, Your coefficients are {currentPolynomial[0:(len(currentPolynomial)-1)]} with a remainder of {currentPolynomial[-1]}\n***")
     currentPolynomial = [] # clear out polynomial for next divisor
