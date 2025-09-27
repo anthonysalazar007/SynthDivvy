@@ -6,7 +6,7 @@ terms = []
 #=== STEP 1: Get factors and convert them to ints, also getting all negative variables =====================================================
 numOfFacs = int(input(f"How many total possible factors are there from your leading coefficient and constant? (EXCLUDING negative values; those will be accounted for automatically)\n>>"))
 for a in range(numOfFacs):
-    responseFac = int(input("Enter a factor (Input fractions as decimals):\n>>"))
+    responseFac = float(input("Enter a factor (Input fractions as decimals):\n>>"))
     factors.append(responseFac)
 for b in factors: #creates a list of negative factors
     factorsNeg.append(b * -1)
@@ -16,7 +16,7 @@ factors = factors + factorsNeg #combines the two lists, giving all factors both 
 #=== STEP 2: Get coefficients and convert them to ints ======================================================================================
 polyLen = int(input(f"How many terms are in your polynomial? (For example, x^2 + 2x + 10 has 3 terms)\n>>"))
 for c in range(polyLen):
-    responseTerm = int(input(f"Enter the coefficients of your polynomial\n>>"))
+    responseTerm = float(input(f"Enter the coefficients of your polynomial\n>>"))
     terms.append(responseTerm)
 
 #=== ACTUAL MATH PART NOW ===
