@@ -1,3 +1,4 @@
+#automatically find factors
 print("Welcome to SynthDivvy; a program to run synthetic division.\n")
 factors = []
 terms = []
@@ -7,16 +8,18 @@ pOverQ = []
 factorsNeg = []
 
 #=== STEP 1: Get factors and convert them to ints, also getting all negative variables =====================================================
-numOfFacsLead = int(input(f"How many total possible factors are there from your leading coefficient? (EXCLUDING negative values; those will be accounted for automatically)\n>>"))
-numOfFacsConst = int(input(f"How many total possible factors are there from your constant? (EXCLUDING negative values; those will be accounted for automatically)\n>>"))
+LeadCoef = int(input(f"What is your leading coefficient?\n>>"))
+facsOfLead.append(LeadCoef)
+ConstTerm = int(input(f"What is your constant term?\n>>"))
+facsOfConst.append(ConstTerm)
+#note. cannot account for 0 as a factor, so user must input a nonzero constant term
+for a in range(1, LeadCoef): # for each possible factor of the leading coefficient (note; use range since LeadCoef is an int)
+    if LeadCoef % (a) == 0: # if the leading coefficient is divisible by a+1 (since range starts at 0)
+        facsOfLead.append(a) #adds the factor to a list
 
-for a in range(numOfFacsLead): # for each possible factor of the leading coefficient (note; use range since numOfFacsLead is an int)
-    responseFacLead = float(input("Enter a factor (Lead) :\n>>")) # asks user to input the factor
-    facsOfLead.append(responseFacLead) #adds the factor to a list
-
-for b in range(numOfFacsConst): 
-    responseFacConst = float(input("Enter a factor (Constant) :\n>>"))
-    facsOfConst.append(responseFacConst)
+for b in range(1, ConstTerm): 
+    if ConstTerm % (b) == 0: # if the leading coefficient is divisible by a+1 (since range starts at 0)
+        facsOfConst.append(b) #adds the factor to a list
 
 for p in facsOfConst: #going to divide every factor of the constant by every factor of the leading coefficient
     for q in facsOfLead:
